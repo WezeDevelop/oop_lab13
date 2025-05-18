@@ -1,0 +1,32 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="https://github.com/avaloniaui"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileExplorer.Views"
+        xmlns:vm="clr-namespace:FileExplorer.ViewModels"
+        mc:Ignorable="d"
+        x:Class="FileExplorer.Views.MainWindow"
+        Title="File Explorer"
+        Width="1000" Height="600"
+        Background="White">
+  
+  <Design.DataContext>
+    <vm:MainWindowViewModel />
+  </Design.DataContext>
+  <Grid RowDefinitions="Auto, *">
+        <StackPanel Orientation="Horizontal" Margin="4">
+            <TextBox Width="400" Text="{Binding CurrentPath}" IsReadOnly="True"/>
+            <Button Content="🔍 Оновити" Command="{Binding LoadDirectoryCommand}" Margin="4,0"/>
+        </StackPanel>
+        
+        <DataGrid Grid.Row="1" Items="{Binding Items}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Ім'я" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding Type}" Width="100"/>
+                <DataGridTextColumn Header="Розмір" Binding="{Binding Size}" Width="150"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+  
+</Window>
